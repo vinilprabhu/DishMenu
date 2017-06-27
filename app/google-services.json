@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "767600520464",
+    "firebase_url": "https://dishmenuandroidapp.firebaseio.com",
+    "project_id": "dishmenuandroidapp",
+    "storage_bucket": "dishmenuandroidapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767600520464:android:66e88c561a8e17a1",
+        "android_client_info": {
+          "package_name": "dishmenu.nerdcutlet.com.dishmenuandroidapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "767600520464-c5ce4c9rc30a7b024rbbgnm4767o462i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dishmenu.nerdcutlet.com.dishmenuandroidapp",
+            "certificate_hash": "45afa75d54779f70099a4b71f8f94cc417ad5b07"
+          }
+        },
+        {
+          "client_id": "767600520464-74h175nb87gai23r8pv2qj6qmqn9jhhe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqRKd-Rhb4iMZnWEB7wRMz9UAXQxEPfYA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "767600520464-74h175nb87gai23r8pv2qj6qmqn9jhhe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
