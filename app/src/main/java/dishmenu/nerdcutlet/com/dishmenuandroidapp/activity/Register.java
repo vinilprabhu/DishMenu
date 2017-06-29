@@ -144,11 +144,11 @@ public class Register extends AppCompatActivity{
 
         if(password.length()==0)
             editTextPassword.setError("Password cannot empty!");
-        else if (password!=password1)
-        {
-            editTextPassword1.setError("Password do not match!");
-            editTextPassword.setError("Password do not match!");
-        }
+//        else if (password!=password1)
+//        {
+//            editTextPassword1.setError("Password do not match!");
+//            editTextPassword.setError("Password do not match!");
+//        }
         else {
 
             progressDialog.setMessage("Registering Please Wait...");

@@ -11,14 +11,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import dishmenu.nerdcutlet.com.dishmenuandroidapp.R;
 
@@ -45,6 +50,7 @@ public class RestaurantDetails extends AppCompatActivity {
 
         final TextView name,address,delivery,foodtype,timings;
         final Button menu;
+        final ImageView image;
 
         name =(TextView)findViewById(R.id.textView0) ;
 
@@ -56,12 +62,25 @@ public class RestaurantDetails extends AppCompatActivity {
 
         menu=(Button)findViewById(R.id.menu);
 
+        image=(ImageView)findViewById(R.id.imageView);
+
 
         name.setText(j);
         database = FirebaseDatabase.getInstance().getReference();
         restdb=database.child("restaurant").child("rest_details");
 
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        StorageReference pathReference = storageRef.child("rest").child(j+".png");
+
+
         selectdb=restdb.child(j);
+
+        Glide.with(this /* context */)
+                .using(new FirebaseImageLoader())
+                .load(pathReference)
+                .into(image);
+
 
 
 
