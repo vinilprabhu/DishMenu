@@ -26,8 +26,10 @@ import dishmenu.nerdcutlet.com.dishmenuandroidapp.R;
 public class DishDetails extends AppCompatActivity {
 
     private DatabaseReference database,dishdb;
+    private String mUserId;
     private FirebaseUser user;
-    String j,k,l,priceS;
+
+    String j,k,l,priceS,FirstName;
 
     private TextView name,discription,price;
     private EditText quantity;
@@ -49,6 +51,7 @@ public class DishDetails extends AppCompatActivity {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         database = FirebaseDatabase.getInstance().getReference();
+        mUserId = user.getUid();
 
 
         name =(TextView) findViewById(R.id.textView9);
@@ -59,16 +62,17 @@ public class DishDetails extends AppCompatActivity {
 
 
 
-        dishdb=database.child("menuitem").child(j).child(k).child(l);
+        dishdb=database;
 
         dishdb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
 
-                String Discription =(String)dataSnapshot.child("isselected").getValue();
-                long Price =(long)dataSnapshot.child("Price").getValue();
-                String Name =(String)dataSnapshot.child("Name").getValue();
+                String Discription =(String)dataSnapshot.child("menuitem").child(j).child(k).child(l).child("isselected").getValue();
+                long Price =(long)dataSnapshot.child("menuitem").child(j).child(k).child(l).child("Price").getValue();
+                String Name =(String)dataSnapshot.child("menuitem").child(j).child(k).child(l).child("Name").getValue();
+                FirstName =(String)dataSnapshot.child("users").child(mUserId).child("Details").child("firstname").getValue();
 
                 priceS=Long.toString(Price);
 
@@ -98,7 +102,7 @@ public class DishDetails extends AppCompatActivity {
                 if(x<1)Toast.makeText(DishDetails.this,"Quantity Cannot be '0'", Toast.LENGTH_LONG).show();
                 else
                 {
-                    database.child("order").child(j).child(table).child(k).child(l).addListenerForSingleValueEvent(new ValueEventListener() {
+                    database.child("order").child(j).child(table).child(FirstName).child(k).child(l).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -106,12 +110,12 @@ public class DishDetails extends AppCompatActivity {
                                Long y = (Long) dataSnapshot.child("quantity").getValue();
 
                                y=y+x;
-                               database.child("order").child(j).child(table).child(k).child(l).child("quantity").setValue(y);
-                               database.child("order").child(j).child(table).child(k).child(l).child("price").setValue(priceS);
+                               database.child("order").child(j).child(table).child(FirstName).child(k).child(l).child("quantity").setValue(y);
+                               database.child("order").child(j).child(table).child(FirstName).child(k).child(l).child("price").setValue(priceS);
                            }
                            else {
-                               database.child("order").child(j).child(table).child(k).child(l).child("quantity").setValue(1);
-                               database.child("order").child(j).child(table).child(k).child(l).child("price").setValue(priceS);}
+                               database.child("order").child(j).child(table).child(FirstName).child(k).child(l).child("quantity").setValue(1);
+                               database.child("order").child(j).child(table).child(FirstName).child(k).child(l).child("price").setValue(priceS);}
 
 
 
@@ -121,8 +125,8 @@ public class DishDetails extends AppCompatActivity {
                         @Override
                         public void onCancelled(DatabaseError error) {
                             // Failed to read value
-                            database.child("order").child(j).child(table).child(k).child(l).child("quantity").setValue(1);
-                            database.child("order").child(j).child(table).child(k).child(l).child("price").setValue(priceS);
+                            database.child("order").child(j).child(table).child(FirstName).child(k).child(l).child("quantity").setValue(1);
+                            database.child("order").child(j).child(table).child(FirstName).child(k).child(l).child("price").setValue(priceS);
                         }
                     });
 

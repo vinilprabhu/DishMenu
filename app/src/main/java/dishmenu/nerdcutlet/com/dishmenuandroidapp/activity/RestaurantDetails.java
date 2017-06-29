@@ -105,7 +105,7 @@ public class RestaurantDetails extends AppCompatActivity {
 
         final EditText input = new EditText(this);
 
-        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_NUMBER);
 
 
         menu.setOnClickListener(new View.OnClickListener() {
