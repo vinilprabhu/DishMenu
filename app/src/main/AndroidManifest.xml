@@ -28,7 +28,11 @@
         <activity android:name=".activity.Recycler_View" />
         <activity android:name=".activity.CheckBoxList" />
         <activity android:name=".activity.ConfirmOrder" />
-        <activity android:name=".activity.DishDetails"></activity>
+        <activity android:name=".activity.DishDetails" />
+        <activity
+            android:name=".activity.TableActivity"
+            android:label="@string/title_activity_table"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

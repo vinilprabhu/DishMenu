@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -33,7 +35,7 @@ public class MenuItems extends AppCompatActivity {
     private Button order;
 
     int item,item1;
-    String selected,k,j,rate;
+    String selected,k,j,rate,table;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,7 @@ public class MenuItems extends AppCompatActivity {
         Intent i = getIntent();
         k =i.getStringExtra("selected");
         j =i.getStringExtra("menu");
-        final String table=i.getStringExtra("table");
+        table=i.getStringExtra("table");
 
         listView = (ListView) findViewById(R.id.listView3);
         order=(Button)findViewById(R.id.button2);
@@ -136,6 +138,31 @@ public class MenuItems extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_t, menu);
+        return true;
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_table:
+                Intent intent =   new Intent(getApplicationContext(), TableActivity.class);
+                intent.putExtra("table",table);
+                startActivity(intent);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 //
 //    @Override
 //    public void onBackPressed() {
