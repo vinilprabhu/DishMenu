@@ -26,7 +26,6 @@
         android:layout_below="@+id/textView9"
         android:layout_alignParentRight="true"
         android:background="#000"
-        android:src="@drawable/virgin"
         android:scaleType="fitXY"
         android:layout_alignParentEnd="true"
         android:layout_above="@+id/textView14" />
