@@ -154,6 +154,7 @@ public class MenuItems extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_table:
                 Intent intent =   new Intent(getApplicationContext(), TableActivity.class);
+                intent.putExtra("rest",j);
                 intent.putExtra("table",table);
                 startActivity(intent);
                 return true;

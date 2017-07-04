@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +39,11 @@ public class RestaurantDetails extends AppCompatActivity {
 
     private DatabaseReference database,restdb,selectdb;
 
-    String table;
+
+    private String mUserId;
+    private FirebaseUser user;
+
+    String table,FirstName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +72,10 @@ public class RestaurantDetails extends AppCompatActivity {
 
 
         name.setText(j);
+        user = FirebaseAuth.getInstance().getCurrentUser();
         database = FirebaseDatabase.getInstance().getReference();
         restdb=database.child("restaurant").child("rest_details");
+        mUserId = user.getUid();
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
@@ -138,8 +146,13 @@ public class RestaurantDetails extends AppCompatActivity {
                 alertDialogBuilder.setPositiveButton("Set table number?", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        Toast.makeText(RestaurantDetails.this,"Table is set.",Toast.LENGTH_LONG).show();
+                        Toast.makeText(RestaurantDetails.this,"Table is set.",Toast.LENGTH_SHORT).show();
                         table= input.getText().toString();
+
+
+                        joinTable(j,table);
+
+
 
                         Intent intent =   new Intent(getApplicationContext(), Menus.class);
                         intent.putExtra("selected",j);
@@ -162,5 +175,47 @@ public class RestaurantDetails extends AppCompatActivity {
 
             }
         });
+    }
+
+
+    private void joinTable(final String j, final String table){
+
+        database.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                FirstName =dataSnapshot.child("users").child(mUserId).child("Details").child("firstname").getValue().toString().trim();
+
+                if(dataSnapshot.child("vt").child(j).child(table).hasChild("count")) {
+                    long x = (long) dataSnapshot.child("vt").child(j).child(table).child("count").getValue();
+                    boolean y=true;
+                    int z= (int) x;
+                    for(int i=1;i<=z;i++)
+                    {
+                        String user =dataSnapshot.child("vt").child(j).child(table).child("users").child(String.valueOf(i)).getValue().toString().trim();
+                        if(user.equals(FirstName)) {
+                            Toast.makeText(RestaurantDetails.this,"already registered for this table",Toast.LENGTH_SHORT).show();
+                            y = false;
+                            break;
+                        }
+                    }
+                    if(y){
+                        x++;
+                        database.child("vt").child(j).child(table).child("users").child(String.valueOf(x)).setValue(FirstName);
+                        database.child("vt").child(j).child(table).child("count").setValue(x);
+                    }
+
+                }
+                else {
+                    database.child("vt").child(j).child(table).child("users").child(String.valueOf(1)).setValue(FirstName);
+                    database.child("vt").child(j).child(table).child("count").setValue(1);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }
