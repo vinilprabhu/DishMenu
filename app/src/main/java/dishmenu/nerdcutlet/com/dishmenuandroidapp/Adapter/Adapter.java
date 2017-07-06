@@ -91,6 +91,20 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyView> {
         });
 
 
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                database = FirebaseDatabase.getInstance().getReference().child("order").child(TableActivity.rest).child(TableActivity.table).child(TableActivity.FirstName).child(holder.Menu.getText().toString());
+                database.child(holder.Name.getText().toString()).removeValue();
+                dishList.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, dishList.size());
+
+            }
+        });
+
+
 
 
 
@@ -179,15 +193,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyView> {
                     }
                 }
             });
-            delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                    database = FirebaseDatabase.getInstance().getReference().child("order").child(TableActivity.rest).child(TableActivity.table).child(TableActivity.FirstName).child(Menu.getText().toString());
-                    database.child(Name.getText().toString()).removeValue();
-
-                }
-            });
 
         }
 
