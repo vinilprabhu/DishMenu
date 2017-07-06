@@ -29,7 +29,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyView> {
 
     private List<Dish> dishList;
 
-    private EditText Quantity;
+    private TextView Quantity;
     private ImageButton delete;
 
     private DatabaseReference database,order;
@@ -40,7 +40,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyView> {
     public Adapter(View view) {
         super();
         //Name = (TextView) view.findViewById(R.id.customText1);
-        Quantity=(EditText)view.findViewById(R.id.quantity);
+        Quantity=(TextView) view.findViewById(R.id.quantity);
         delete=(ImageButton)view.findViewById(R.id.deleteButton);
 
     }
@@ -63,6 +63,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyView> {
         dish=dishList.get(position);
         holder.Name.setText(dish.name);
         holder.Price.setText(dish.price);
+        holder.Menu.setText(dish.menu);
         holder.Quantity.setText(String.valueOf(dish.quantity));
 
         holder.Quantity.addTextChangedListener(new TextWatcher() {
@@ -90,16 +91,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyView> {
         });
 
 
-        holder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                database = FirebaseDatabase.getInstance().getReference();
-                order=database.child("order").child(TableActivity.rest).child(TableActivity.table).child(TableActivity.FirstName).child("Dessert");
-                order.child(dish.name).removeValue();
-
-            }
-        });
 
 
 
@@ -118,8 +110,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyView> {
 
     public class MyView extends RecyclerView.ViewHolder{
 
-        public TextView Name,Price;
-        public EditText Quantity;
+        public TextView Name,Price,Menu;
+        public TextView Quantity;
         public TextInputLayout quantityLayout;
         public ImageButton plus,minus,delete;
 //
@@ -134,7 +126,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyView> {
 
             Name = (TextView) view.findViewById(R.id.customText1);
             Price = (TextView) view.findViewById(R.id.customText2);
-            Quantity=(EditText) view.findViewById(R.id.quantity) ;
+            Menu=(TextView)view.findViewById(R.id.customText3);
+            Quantity=(TextView) view.findViewById(R.id.quantity) ;
             plus=(ImageButton) view.findViewById(R.id.imageButton2);
             minus=(ImageButton)view.findViewById(R.id.imageButton);
             delete=(ImageButton)view.findViewById(R.id.deleteButton);
@@ -145,15 +138,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyView> {
                 public void onClick(View v) {
 
                     DatabaseReference database;
-                    database=FirebaseDatabase.getInstance().getReference().child("order").child(TableActivity.rest).child(TableActivity.table).child(TableActivity.FirstName).child("Dessert");
+                    database=FirebaseDatabase.getInstance().getReference().child("order").child(TableActivity.rest).child(TableActivity.table).child(TableActivity.FirstName).child(Menu.getText().toString());
 
-                    String qty =dish.quantity;
+                    String qty =Quantity.getText().toString();
 
                     int count=Integer.parseInt(qty);
 
                     count = count + 1 ;
                     Quantity.setText("" + count);
-                    database.child(dish.name).child("quantity").setValue(""+count);
+                    database.child(Name.getText().toString()).child("quantity").setValue(""+count);
                 }
             });
             minus.setOnClickListener(new View.OnClickListener() {
@@ -161,29 +154,38 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyView> {
                 public void onClick(View v) {
 
                     DatabaseReference database;
-                    database=FirebaseDatabase.getInstance().getReference().child("order").child(TableActivity.rest).child(TableActivity.table).child(TableActivity.FirstName).child("Dessert");
+                    database=FirebaseDatabase.getInstance().getReference().child("order").child(TableActivity.rest).child(TableActivity.table).child(TableActivity.FirstName).child(Menu.getText().toString());
 
-                    String qty =dish.quantity;
+                    String qty =Quantity.getText().toString();
 
                     int count=Integer.parseInt(qty);
-                    if(count == 0){
+                    if(count == 0||count==1){
                         count = 1;
 
                         Quantity.setText("" + count);
-                        database.child(dish.name).child("quantity").setValue(""+count);
+                        database.child(Name.getText().toString()).child("quantity").setValue(""+count);
 
                     }
                     else if(count ==0){
                         Quantity.setText("" + count);
-                        database.child(dish.name).child("quantity").setValue(""+count);
+                        database.child(Name.getText().toString()).child("quantity").setValue(""+count);
 
                     }
                     else{
                         count = count -1;
                         Quantity.setText("" + count);
-                        database.child(dish.name).child("quantity").setValue(""+count);
+                        database.child(Name.getText().toString()).child("quantity").setValue(""+count);
 
                     }
+                }
+            });
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    database = FirebaseDatabase.getInstance().getReference().child("order").child(TableActivity.rest).child(TableActivity.table).child(TableActivity.FirstName).child(Menu.getText().toString());
+                    database.child(Name.getText().toString()).removeValue();
+
                 }
             });
 

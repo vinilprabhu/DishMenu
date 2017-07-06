@@ -92,9 +92,6 @@ public class MenuItems extends AppCompatActivity {
                 startActivity(intent);
 
 
-                database.child("order").child(mUserId).child("orders").child("order1").child(Integer.toString(item)).setValue(selected);
-
-
 //                final int item1=i*7+30;
 //                final String jS;
 //                jS=Integer.toString(item1);

@@ -3,8 +3,7 @@
     package="dishmenu.nerdcutlet.com.dishmenuandroidapp">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -28,11 +27,9 @@
         <activity android:name=".activity.Menus" />
         <activity android:name=".activity.MenuItems" />
         <activity android:name=".activity.DishDetails" />
-        <activity
-            android:name=".activity.TableActivity"
-            android:label="@string/title_activity_table"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.AddDish"></activity>
+        <activity android:name=".activity.TableActivity" />
+        <activity android:name=".activity.AddDish" />
+        <activity android:name=".activity.UserOrders"></activity>
     </application>
 
 </manifest>

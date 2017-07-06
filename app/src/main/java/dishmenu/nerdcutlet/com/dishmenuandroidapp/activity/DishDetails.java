@@ -39,7 +39,7 @@ public class DishDetails extends AppCompatActivity {
     String j,k,l,Price,FirstName,table;
 
     private TextView name,discription,price;
-    private EditText quantity;
+    private TextView quantity;
     private Button adddish;
     private ImageButton ibp,ibm;
 
@@ -77,7 +77,7 @@ public class DishDetails extends AppCompatActivity {
         discription=(TextView)findViewById(R.id.textView15);
         price=(TextView)findViewById(R.id.textView17);
 
-        quantity=(EditText)findViewById(R.id.editText);
+        quantity=(TextView)findViewById(R.id.editText);
 
 
 
