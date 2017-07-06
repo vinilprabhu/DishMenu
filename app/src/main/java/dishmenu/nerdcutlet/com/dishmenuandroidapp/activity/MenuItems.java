@@ -14,7 +14,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.Firebase;
 import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +34,7 @@ public class MenuItems extends AppCompatActivity {
     private String mUserId;
 
     private ListView listView,listViewR;
-    private Button order;
+    private Button add;
 
     int item,item1;
     String selected,k,j,rate,table;
@@ -48,7 +50,7 @@ public class MenuItems extends AppCompatActivity {
         table=i.getStringExtra("table");
 
         listView = (ListView) findViewById(R.id.listView3);
-        order=(Button)findViewById(R.id.button2);
+        add=(Button)findViewById(R.id.button2);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         database = FirebaseDatabase.getInstance().getReference();
@@ -71,10 +73,6 @@ public class MenuItems extends AppCompatActivity {
 
             }
         };
-
-
-
-
 
 
         listView.setAdapter(firebaseListAdapter);
@@ -129,10 +127,14 @@ public class MenuItems extends AppCompatActivity {
             }
         });
 
-        order.setOnClickListener(new View.OnClickListener() {
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), OrderList.class));
+                Intent intent =   new Intent(getApplicationContext(), AddDish.class);
+                intent.putExtra("rest",j);
+                intent.putExtra("menu",k);
+                startActivity(intent);
+
             }
         });
 

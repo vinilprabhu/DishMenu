@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/customText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:layout_centerVertical="true" />
+
+
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/customText2"
+        android:textSize="12sp"
+        android:layout_alignLeft="@+id/customText1"
+        android:layout_above="@+id/view"/>
+
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"
+        android:id="@+id/view"
+        android:layout_below="@+id/deleteButton"
+        android:layout_alignRight="@+id/deleteButton"
+        android:layout_alignEnd="@+id/deleteButton" />
+
+    <ImageButton
+        android:id="@+id/deleteButton"
+        android:layout_width="50dp"
+        android:src="@android:drawable/ic_menu_delete"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+
+    <ImageButton
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:id="@+id/imageButton"
+        android:src="@drawable/remove"
+        android:background="#00ffffff"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/quantity" />
+
+    <ImageButton
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:id="@+id/imageButton2"
+        android:src="@drawable/add"
+        android:background="#00ffffff"
+        android:layout_above="@+id/view"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/deleteButton"/>
+
+    <EditText
+        android:layout_width="30dp"
+        android:layout_height="50dp"
+        android:inputType="number"
+        android:ems="10"
+        android:textSize="15dp"
+        android:id="@+id/quantity"
+        android:textAlignment="center"
+        android:text="1"
+        android:hint="1"
+        android:layout_above="@+id/view"
+        android:layout_toLeftOf="@+id/imageButton2"
+        android:layout_centerVertical="true" />
+
+</RelativeLayout>

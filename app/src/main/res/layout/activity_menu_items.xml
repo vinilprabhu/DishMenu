@@ -26,7 +26,7 @@
     <Button
         android:layout_width="165dp"
         android:layout_height="wrap_content"
-        android:text="Goto Order"
+        android:text="Add Dish"
         android:textColor="#000"
         android:background="#3F51B5"
         android:id="@+id/button2"

@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dishmenu.nerdcutlet.com.dishmenuandroidapp">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,16 +27,12 @@
         <activity android:name=".activity.RestaurantDetails" />
         <activity android:name=".activity.Menus" />
         <activity android:name=".activity.MenuItems" />
-        <activity android:name=".activity.OrderList" />
-        <activity android:name=".activity.AddDishes" />
-        <activity android:name=".activity.Recycler_View" />
-        <activity android:name=".activity.CheckBoxList" />
-        <activity android:name=".activity.ConfirmOrder" />
         <activity android:name=".activity.DishDetails" />
         <activity
             android:name=".activity.TableActivity"
             android:label="@string/title_activity_table"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.AddDish"></activity>
     </application>
 
 </manifest>
