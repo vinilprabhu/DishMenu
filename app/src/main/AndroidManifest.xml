@@ -29,7 +29,9 @@
         <activity android:name=".activity.DishDetails" />
         <activity android:name=".activity.TableActivity" />
         <activity android:name=".activity.AddDish" />
-        <activity android:name=".activity.UserOrders"></activity>
+        <activity android:name=".activity.UserOrders" />
+        <activity android:name=".activity.Bill" />
+        <activity android:name=".activity.Payments"></activity>
     </application>
 
 </manifest>

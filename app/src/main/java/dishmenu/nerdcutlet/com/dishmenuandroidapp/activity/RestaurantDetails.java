@@ -79,16 +79,17 @@ public class RestaurantDetails extends AppCompatActivity {
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
-        StorageReference pathReference = storageRef.child("rest").child(j+".png");
+        StorageReference pathReference = storageRef.child("rest");
 
 
         selectdb=restdb.child(j);
 
+
+
         Glide.with(this /* context */)
                 .using(new FirebaseImageLoader())
-                .load(pathReference)
+                .load(pathReference.child(j))
                 .into(image);
-
 
 
 

@@ -11,10 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -48,12 +48,14 @@ public class TableActivity extends AppCompatActivity {
 
 
     RecyclerView RVstarters;
+    Button bill;
     List<Dish> list = new ArrayList<>();
     private Adapter mAdapter;
 
 
 
     int z;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +66,8 @@ public class TableActivity extends AppCompatActivity {
         Intent i = getIntent();
         rest =i.getStringExtra("rest");
         table=i.getStringExtra("table");
-        Toast.makeText(getApplicationContext(), rest+" at "+table, Toast.LENGTH_SHORT).show();
 
+        bill=(Button)findViewById(R.id.button3);
 
 
 //        RVmaincourse = (RecyclerView) findViewById(R.id.RVmiancourse);
@@ -301,34 +303,53 @@ public class TableActivity extends AppCompatActivity {
 
 
 
-
         final ListView userList=(ListView)findViewById(R.id.listViewMembers);
 
-        FirebaseListAdapter<String> firebaseListAdapter = new FirebaseListAdapter<String>
+        final FirebaseListAdapter<String> firebaseListAdapter = new FirebaseListAdapter<String>
                 (this,String.class,android.R.layout.simple_list_item_1,database.child("vt").child(rest).child(table).child("users")) {
             @Override
             protected void populateView(View v, String model, int position) {
                 TextView textView = (TextView)v.findViewById(android.R.id.text1);
-                if(!model.equals(FirstName))textView.setText(model);
+                textView.setText(model);
+                if(model.equals(FirstName))z =position;
+
+                System.out.println("position " + z);
+
+
+
 
             }
         };
 
+
+
+
+
         userList.setAdapter(firebaseListAdapter);
+
+
+
 
         userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selected = userList.getItemAtPosition(position).toString();
 
-
-                Toast.makeText(getApplicationContext(), selected, Toast.LENGTH_SHORT).show();
-
-
                 Intent intent =   new Intent(getApplicationContext(), UserOrders.class);
                 intent.putExtra("rest",rest);
                 intent.putExtra("table",table);
                 intent.putExtra("user",selected);
+                startActivity(intent);
+            }
+        });
+
+        bill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =   new Intent(getApplicationContext(), Bill.class);
+                intent.putExtra("rest",rest);
+                intent.putExtra("table",table);
+                intent.putExtra("user",FirstName);
                 startActivity(intent);
             }
         });

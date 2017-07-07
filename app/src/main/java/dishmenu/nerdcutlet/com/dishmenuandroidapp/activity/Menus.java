@@ -9,9 +9,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import dishmenu.nerdcutlet.com.dishmenuandroidapp.R;
 
@@ -22,6 +27,7 @@ public class Menus extends AppCompatActivity {
     private Button menu1,menu2,menu3,menu4;
 
      String table,j;
+    int x=4;
 
     private ListView listView;
     @Override
@@ -37,6 +43,49 @@ public class Menus extends AppCompatActivity {
         menu2=(Button)findViewById(R.id.menu2);
         menu3=(Button)findViewById(R.id.menu3);
         menu4=(Button)findViewById(R.id.menu4);
+
+        menu1.setVisibility(View.INVISIBLE);
+        menu2.setVisibility(View.INVISIBLE);
+        menu3.setVisibility(View.INVISIBLE);
+        menu4.setVisibility(View.INVISIBLE);
+
+        database = FirebaseDatabase.getInstance().getReference();
+        restdb=database.child("menuitems").child(j);
+
+        restdb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChild("Drinks")) {
+                    menu1.setVisibility(View.VISIBLE);
+                    x--;
+                }
+                if(dataSnapshot.hasChild("Starters")) {
+                    menu2.setVisibility(View.VISIBLE);
+                    x--;
+                }
+                if(dataSnapshot.hasChild("Main Course")) {
+                    menu3.setVisibility(View.VISIBLE);
+                    x--;
+                }
+                if(dataSnapshot.hasChild("Dessert")) {
+                    menu4.setVisibility(View.VISIBLE);
+                    x--;
+                }
+
+
+                System.out.println("wokrs " + x);
+
+                if(x==4) {
+                    Toast.makeText(Menus.this, "Database Empty", Toast.LENGTH_SHORT).show();
+                    System.out.println("wokrs " + x);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         menu1.setOnClickListener(new View.OnClickListener() {
             @Override

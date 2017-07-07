@@ -133,11 +133,14 @@ public class DishDetails extends AppCompatActivity {
                                database.child("order").child(j).child(table).child(FirstName).child(k).child(l).child("name").setValue(l);
                                database.child("order").child(j).child(table).child(FirstName).child(k).child(l).child("quantity").setValue(""+y);
                                database.child("order").child(j).child(table).child(FirstName).child(k).child(l).child("price").setValue(Price);
+                               Toast.makeText(DishDetails.this,"Dish added to your order.",Toast.LENGTH_SHORT).show();
                            }
                            else {
                                database.child("order").child(j).child(table).child(FirstName).child(k).child(l).child("name").setValue(l);
                                database.child("order").child(j).child(table).child(FirstName).child(k).child(l).child("quantity").setValue(""+x);
-                               database.child("order").child(j).child(table).child(FirstName).child(k).child(l).child("price").setValue(Price);}
+                               database.child("order").child(j).child(table).child(FirstName).child(k).child(l).child("price").setValue(Price);
+                               Toast.makeText(DishDetails.this,"Dish added to your order.",Toast.LENGTH_SHORT).show();
+                           }
 
 
 
@@ -150,6 +153,7 @@ public class DishDetails extends AppCompatActivity {
                             database.child("order").child(j).child(table).child(FirstName).child(k).child(l).child("name").setValue(l);
                             database.child("order").child(j).child(table).child(FirstName).child(k).child(l).child("quantity").setValue("1");
                             database.child("order").child(j).child(table).child(FirstName).child(k).child(l).child("price").setValue(Price);
+                            Toast.makeText(DishDetails.this,"Dish added to your order.",Toast.LENGTH_SHORT).show();
                         }
                     });
 
