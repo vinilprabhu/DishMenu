@@ -50,7 +50,6 @@ public class MenuItems extends AppCompatActivity {
         table=i.getStringExtra("table");
 
         listView = (ListView) findViewById(R.id.listView3);
-        add=(Button)findViewById(R.id.button2);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         database = FirebaseDatabase.getInstance().getReference();
@@ -124,16 +123,7 @@ public class MenuItems extends AppCompatActivity {
             }
         });
 
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent =   new Intent(getApplicationContext(), AddDish.class);
-                intent.putExtra("rest",j);
-                intent.putExtra("menu",k);
-                startActivity(intent);
 
-            }
-        });
 
 
     }
@@ -163,19 +153,6 @@ public class MenuItems extends AppCompatActivity {
         }
     }
 
-//
-//    @Override
-//    public void onBackPressed() {
-//        Intent intent =   new Intent(getApplicationContext(), Menus.class);
-//        Toast.makeText(MenuItems.this,"item == "+item,Toast.LENGTH_LONG).show();
-//        intent.putExtra("menu",j);
-//        intent.putExtra("item",item);
-//        startActivity(intent);
-//    }
 
 
 }
-//  #212121
-//  #323232
-//  #0D7377
-//  #

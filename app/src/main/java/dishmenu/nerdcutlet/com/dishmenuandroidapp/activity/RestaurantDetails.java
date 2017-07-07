@@ -148,21 +148,26 @@ public class RestaurantDetails extends AppCompatActivity {
 
                 alertDialogBuilder.setView(input);
 
-                alertDialogBuilder.setPositiveButton("Set table number?", new DialogInterface.OnClickListener() {
+                alertDialogBuilder.setPositiveButton("Set table number.", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        Toast.makeText(RestaurantDetails.this,"Table is set.",Toast.LENGTH_SHORT).show();
                         table= input.getText().toString();
 
-
-                        joinTable(j,table);
-
+                        if(!table.equals("")){
 
 
-                        Intent intent =   new Intent(getApplicationContext(), Menus.class);
-                        intent.putExtra("selected",j);
-                        intent.putExtra("table",table);
-                        startActivity(intent);
+                            joinTable(j,table);
+
+                            Toast.makeText(RestaurantDetails.this,"Table is set.",Toast.LENGTH_SHORT).show();
+
+
+
+                            Intent intent =   new Intent(getApplicationContext(), Menus.class);
+                            intent.putExtra("selected",j);
+                            intent.putExtra("table",table);
+                            startActivity(intent);
+                        }
+                        else Toast.makeText(RestaurantDetails.this,"Enter Table number.",Toast.LENGTH_SHORT).show();
 
                     }
                 });

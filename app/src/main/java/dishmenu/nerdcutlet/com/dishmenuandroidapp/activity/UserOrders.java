@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -33,6 +34,7 @@ public class UserOrders extends AppCompatActivity {
     private FirebaseUser user;
 
     private ListView listView;
+    TextView username;
 
     public static String table,FirstName,rest;
 
@@ -53,6 +55,8 @@ public class UserOrders extends AppCompatActivity {
 
 
         RVstarters = (RecyclerView) findViewById(R.id.RVstarters);
+        username=(TextView)findViewById(R.id.username);
+        username.setText(FirstName);
 
         RecyclerView.LayoutManager mLayoutManager4 = new LinearLayoutManager(getApplicationContext());
 

@@ -84,8 +84,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Submit"
-            android:background="#000"
-            android:textColor="#fff"
+            android:textColor="#000"
+            android:background="#3F51B5"
+            android:textColorHint="#a1FF4081"
             android:id="@+id/buttonsubmitDetails"
             android:layout_gravity="center_horizontal" />
 

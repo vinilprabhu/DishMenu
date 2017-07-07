@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/DishMenu.iml" filepath="$PROJECT_DIR$/DishMenu.iml" />
       <module fileurl="file://$PROJECT_DIR$/DishMenuAndroidApp.iml" filepath="$PROJECT_DIR$/DishMenuAndroidApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>

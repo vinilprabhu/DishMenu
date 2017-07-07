@@ -123,8 +123,8 @@ public class Bill extends AppCompatActivity {
                         l=GTotal*GST;
                         m=GTotal+l;
 
-                        Tax.setText(l+"");
-                        TTotal.setText(m+"");
+                        Tax.setText(String.format( "%.2f",l));
+                        TTotal.setText(String.format( "%.2f",m));
 
 
 
@@ -182,8 +182,8 @@ public class Bill extends AppCompatActivity {
                         l=GTotal*GST;
                         m=GTotal+l;
 
-                        Tax.setText(l+"");
-                        TTotal.setText(m+"");
+                        Tax.setText(String.format( "%.2f",l));
+                        TTotal.setText(String.format( "%.2f",m));
 
                         list.add(f);
                         mAdapter = new Adapter3(list);
@@ -238,8 +238,8 @@ public class Bill extends AppCompatActivity {
                         l=GTotal*GST;
                         m=GTotal+l;
 
-                        Tax.setText(l+"");
-                        TTotal.setText(m+"");
+                        Tax.setText(String.format( "%.2f",l));
+                        TTotal.setText(String.format( "%.2f",m));
 
                         list.add(f);
                         mAdapter = new Adapter3(list);
@@ -296,8 +296,8 @@ public class Bill extends AppCompatActivity {
                         l=GTotal*GST;
                         m=GTotal+l;
 
-                        Tax.setText(l+"");
-                        TTotal.setText(m+"");
+                        Tax.setText(String.format( "%.2f",l));
+                        TTotal.setText(String.format( "%.2f",m));
 
                         list.add(f);
                         mAdapter = new Adapter3(list);
