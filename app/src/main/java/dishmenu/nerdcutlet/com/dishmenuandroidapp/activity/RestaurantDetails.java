@@ -131,16 +131,20 @@ public class RestaurantDetails extends AppCompatActivity {
 
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
-        final EditText input = new EditText(this);
 
-        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_NUMBER);
 
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+
+                final EditText input = new EditText(RestaurantDetails.this);
+
+                input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_NUMBER);
+
                 alertDialogBuilder.setMessage("Set table number.");
+
 
                 alertDialogBuilder.setView(input);
 
@@ -169,6 +173,7 @@ public class RestaurantDetails extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(RestaurantDetails.this,"Cancled",Toast.LENGTH_SHORT).show();
+
                     }
                 });
                 AlertDialog alertDialog = alertDialogBuilder.create();
